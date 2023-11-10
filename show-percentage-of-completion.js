@@ -20,11 +20,11 @@ stream.on('error', error => {
 stream.on('line', line => {
     const country = line.split(',')[0]
     countries[country] = countries[country] ? countries[country] + 1 : 1;
-    bar.increment(line.length + 1);
+    bar.increment(Buffer.byteLength(line) + 1);
 });
 
 stream.on('close', () => {
     bar.stop();
-    // console.log(countries);
+    console.log(countries);
 })
 
